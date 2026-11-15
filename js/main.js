@@ -301,6 +301,87 @@
   phone.href = 'tel:+976' + BRAND.phone.replace(/\D/g, '');
   $('#foot-links').innerHTML = SOCIALS.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join('');
 
+  /* ---------- 10б. ҮНИЙН САНАЛЫН МАЯГТ ---------- */
+  const form = $('#quote-form'), status = $('#qf-status');
+  $('#qf-no').textContent = String(Date.now()).slice(-5);              // хүсэлтийн дугаар (чимэглэл)
+  $('#qf-services').innerHTML = QUOTE.services.map((s, i) =>
+    `<label class="qf-chip"><input type="checkbox" name="service" value="${esc(s)}"><span>${esc(s)}</span></label>`).join('');
+
+  const rules = {
+    name: v => v.length >= 2 || 'Нэрээ бичнэ үү',
+    phone: v => v.replace(/\D/g, '').length >= 8 || 'Утасны дугаараа зөв бичнэ үү (8+ орон)',
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || 'Имэйлээ зөв бичнэ үү',
+    company: v => v.length >= 2 || 'Хаана ажилладгаа бичнэ үү',
+    position: v => v.length >= 2 || 'Албан тушаалаа бичнэ үү'
+  };
+  function check(input) {
+    const rule = rules[input.name];
+    if (!rule) return true;
+    const ok = rule(input.value.trim());
+    const field = input.closest('.qf-field');
+    field.classList.toggle('bad', ok !== true);
+    field.dataset.error = ok === true ? '' : ok;
+    return ok === true;
+  }
+  $$('input', form).forEach(i => i.addEventListener('blur', () => { if (i.value) check(i); }));
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const inputs = $$('input[name]', form).filter(i => rules[i.name]);
+    const results = inputs.map(check);
+    if (results.includes(false)) {
+      status.className = 'qf-status err';
+      status.textContent = 'Тэмдэглэсэн талбаруудыг бөглөнө үү.';
+      inputs[results.indexOf(false)].focus();
+      return;
+    }
+    const f = new FormData(form);
+    if (f.get('_honey')) return;                                        // бот
+    const services = f.getAll('service');
+    const data = {
+      'Нэр': f.get('name').trim(),
+      'Утас': f.get('phone').trim(),
+      'Имэйл': f.get('email').trim(),
+      'Байгууллага': f.get('company').trim(),
+      'Албан тушаал': f.get('position').trim(),
+      'Үйлчилгээ': services.join(', ') || '—',
+      'Дэлгэрэнгүй': f.get('details').trim() || '—',
+      _subject: `Үнийн саналын хүсэлт — ${f.get('name').trim()} (${f.get('company').trim()})`,
+      _replyto: f.get('email').trim(),
+      _template: 'table',
+      _captcha: 'false'
+    };
+    const btn = $('.qf-submit', form);
+    btn.disabled = true;
+    btn.textContent = 'Илгээж байна…';
+    status.className = 'qf-status';
+    status.textContent = '';
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${QUOTE.email}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || res.status);
+      form.classList.add('sent');
+      form.innerHTML = `
+        <div class="qf-done">
+          <span class="qf-ball" aria-hidden="true"></span>
+          <h3>SWISH! Хүсэлт илгээгдлээ</h3>
+          <p>Баярлалаа, ${esc(data['Нэр'])}. Хасаа таны мэдээллийг хараад <b>${esc(data['Имэйл'])}</b> хаяг руу үнийн саналаа илгээнэ.</p>
+        </div>`;
+    } catch (err) {
+      // Үйлчилгээ ажиллахгүй бол зочны имэйл програмаар бэлэн захиа нээх боломж өгнө
+      const body = Object.entries(data).filter(([k]) => !k.startsWith('_')).map(([k, v]) => `${k}: ${v}`).join('\n');
+      const mailto = `mailto:${QUOTE.email}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(body)}`;
+      status.className = 'qf-status err';
+      status.innerHTML = `Илгээж чадсангүй. <a href="${mailto}">Имэйлээр шууд илгээх</a> эсвэл ${esc(BRAND.phone)} руу залгана уу.`;
+      btn.disabled = false;
+      btn.textContent = 'Дахин илгээх ➜';
+    }
+  });
+
   /* ---------- 11. ВИДЕО ТОГЛУУЛАГЧ ---------- */
   let lastFocus = null;
   function play(id) {

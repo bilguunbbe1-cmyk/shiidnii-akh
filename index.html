@@ -26,6 +26,7 @@
       <a href="#episodes">Дугаарууд</a>
       <a href="#khasaa">Хасаа</a>
       <a href="#social">Сошиал</a>
+      <a href="#quote">Үнийн санал</a>
     </nav>
     <a class="btn btn-orange nav-sub" href="#" data-link="subscribe" target="_blank" rel="noopener">Subscribe</a>
   </header>
@@ -119,11 +120,21 @@
     <!-- WHO IS KHASAA — санаачлагч -->
     <section class="khasaa" id="khasaa">
       <div class="kh-head">
-        <h2 class="kh-title"><span class="kh-who">WHO IS</span><span class="kh-name" id="kh-name"></span></h2>
-        <p class="kh-pill" id="kh-pill"></p>
+        <div>
+          <h2 class="kh-title"><span class="kh-who">WHO IS</span><span class="kh-name" id="kh-name"></span></h2>
+          <p class="kh-pill" id="kh-pill"></p>
+        </div>
+        <figure class="kh-print">
+          <img src="assets/community.jpg" alt="«Шийдний ах»-ын тоглогчид, хүүхдүүд шийд дээр хамтдаа" loading="lazy">
+          <figcaption>🏀 Шийд дээрх нэг том гэр бүл</figcaption>
+        </figure>
       </div>
       <div class="kh-body">
-        <div class="viewfinder" aria-hidden="true">
+        <div class="viewfinder" role="img" aria-label="Хасаа шийд дээр тоглогчдод зааварчилгаа өгч байна">
+          <!-- Бүрхэг дэвсгэр + фокусын дөрвөлжин дотор тод хэсэг — камер фокуслаж буй мэт -->
+          <img class="vf-photo" src="assets/khasaa-court.jpg" alt="" loading="lazy">
+          <img class="vf-photo vf-sharp" src="assets/khasaa-court.jpg" alt="" loading="lazy">
+          <span class="vf-shade"></span>
           <span class="vf-corner tl"></span><span class="vf-corner tr"></span><span class="vf-corner bl"></span><span class="vf-corner br"></span>
           <span class="vf-rec">● REC</span>
           <span class="vf-meta">ISO 3200 · 1/1000s · f2.8</span>
@@ -134,6 +145,7 @@
         <div class="kh-text">
           <div id="kh-bio"></div>
           <ol class="kh-timeline" id="kh-timeline"></ol>
+          <a class="btn btn-orange kh-cta" href="#quote">Хасаагаас үнийн санал авах →</a>
         </div>
       </div>
     </section>
@@ -145,12 +157,40 @@
       <div class="social-grid" id="social-grid"></div>
     </section>
 
-    <!-- 8. ХАМТРАН АЖИЛЛАХ -->
-    <section class="partners">
-      <h2 class="h2 light"><span>06</span>Хамтран ажиллах</h2>
-      <div class="collab">
-        <p>Ивээн тэтгэх, хамтран ажиллах уу?</p>
-        <a class="phone" id="phone" href="#"></a>
+    <!-- 8. ҮНИЙН САНАЛ АВАХ — маягт Хасаагийн имэйл рүү очно -->
+    <section class="quote" id="quote">
+      <h2 class="h2 light"><span>06</span>Үнийн санал авах</h2>
+      <div class="quote-layout">
+        <div class="quote-info">
+          <p class="quote-lead">Тоглолтын зураг авалт, багийн улирлын контент эсвэл «Шийдний ах»-д ивээн тэтгэх үү? Мэдээллээ үлдээгээрэй — <b>Хасаа</b> хараад үнийн саналаа <b>имэйлээр</b> илгээнэ.</p>
+          <ol class="quote-steps">
+            <li><b>1</b>Маягтаа бөглөнө</li>
+            <li><b>2</b>Хасаа таны хүсэлтийг хянана</li>
+            <li><b>3</b>Үнийн санал имэйлээр ирнэ</li>
+          </ol>
+          <p class="quote-or">Яаралтай бол шууд залгаарай:</p>
+          <a class="phone" id="phone" href="#"></a>
+        </div>
+
+        <form class="quote-form" id="quote-form" novalidate>
+          <p class="qf-title">ҮНИЙН САНАЛЫН ХҮСЭЛТ <span>#<i id="qf-no"></i></span></p>
+          <div class="qf-grid">
+            <label class="qf-field"><span>Овог, нэр *</span><input name="name" autocomplete="name" required></label>
+            <label class="qf-field"><span>Холбогдох дугаар *</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="9911-2233" required></label>
+            <label class="qf-field wide"><span>Имэйл * <small>(үнийн санал энд ирнэ)</small></span><input name="email" type="email" autocomplete="email" required></label>
+            <label class="qf-field"><span>Хаана ажилладаг (байгууллага) *</span><input name="company" autocomplete="organization" required></label>
+            <label class="qf-field"><span>Албан тушаал *</span><input name="position" autocomplete="organization-title" required></label>
+          </div>
+          <fieldset class="qf-services">
+            <legend>Юу хэрэгтэй вэ? <small>(олныг сонгож болно)</small></legend>
+            <div id="qf-services"></div>
+          </fieldset>
+          <label class="qf-field wide"><span>Дэлгэрэнгүй <small>(огноо, байршил, төсөв г.м.)</small></span><textarea name="details" rows="4"></textarea></label>
+          <!-- Spam хамгаалалт: хүн харахгүй, бот бөглөдөг талбар -->
+          <input class="qf-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-orange qf-submit" type="submit">Үнийн санал авах ➜</button>
+          <p class="qf-status" id="qf-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
