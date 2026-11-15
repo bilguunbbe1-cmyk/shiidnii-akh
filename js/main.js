@@ -372,11 +372,14 @@
           <p>Баярлалаа, ${esc(data['Нэр'])}. Хасаа таны мэдээллийг хараад <b>${esc(data['Имэйл'])}</b> хаяг руу үнийн саналаа илгээнэ.</p>
         </div>`;
     } catch (err) {
+      console.warn('Quote form:', err.message);                         // FormSubmit-ийн хариуг console-д харуулна
       // Үйлчилгээ ажиллахгүй бол зочны имэйл програмаар бэлэн захиа нээх боломж өгнө
       const body = Object.entries(data).filter(([k]) => !k.startsWith('_')).map(([k, v]) => `${k}: ${v}`).join('\n');
       const mailto = `mailto:${QUOTE.email}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(body)}`;
+      const notActive = /activat/i.test(err.message);                    // маягт хараахан идэвхжээгүй
       status.className = 'qf-status err';
-      status.innerHTML = `Илгээж чадсангүй. <a href="${mailto}">Имэйлээр шууд илгээх</a> эсвэл ${esc(BRAND.phone)} руу залгана уу.`;
+      status.innerHTML = (notActive ? 'Маягт түр идэвхжээгүй байна. ' : 'Илгээж чадсангүй. ') +
+        `<a href="${mailto}">Имэйлээр шууд илгээх</a> эсвэл ${esc(BRAND.phone)} руу залгана уу.`;
       btn.disabled = false;
       btn.textContent = 'Дахин илгээх ➜';
     }
