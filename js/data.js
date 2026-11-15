@@ -12,12 +12,29 @@ window.BRAND = {
   instagram: "https://www.instagram.com/airbummm/",
   facebook: "https://www.facebook.com/profile.php?id=100090520350078",
   phone: "9896-1122",                                   // Instagram bio дахь хамтран ажиллах утас
-  partners: [
-    { name: "@sg.apes",     url: "https://www.instagram.com/sg.apes/",     role: "Баг" },
-    { name: "@sg.hawks",    url: "https://www.instagram.com/sg.hawks/",    role: "Баг" },
-    { name: "@6lockstudio", url: "https://www.tiktok.com/@6lockstudio",    role: "Ивээн тэтгэгч" }
+  latest: { title: "«ШИЙДНИЙ АХ» HIGH SCHOOL Ep1", where: "Facebook", url: "https://www.facebook.com/profile.php?id=100090520350078" },
+  goal: "«Шийдний ах» бол Монголын гудамжны сагсан бөмбөгийн соёлыг олон нийтэд таниулах, шинэ үеийн чадварлаг тоглогчдыг олж илрүүлэх, тэднийг хөгжүүлж, бодит боломж нээх зорилготой контент цуврал юм.",
+  pillars: ["Соёлыг таниулах", "Тоглогч илрүүлэх", "Хөгжүүлж, боломж нээх"]
+};
+
+/* «Шийдний ах»-ыг санаачлагч */
+window.KHASAA = {
+  nick: "Khasaa",
+  name: "ХАС-ЭРДЭНЭ",
+  role: "«Шийдний ах» контентыг санаачлагч",
+  since: 2014,          // гэрэл зураг авч эхэлсэн он
+  proSince: 2020,       // спортын гэрэл зургийг мэргэжлийн түвшинд
+  bio: [
+    "Гэрэл зурагт 2014 оноос хойш дурлан сонирхлоороо зураг авдаг байсан бол 2020 оноос спортын агшинг мэргэжлийн түвшинд буулгах болсон.",
+    "Тэрбээр {teams} зэрэг багуудтай хамтран ажилласан туршлагатай. 2024 онд SG APES багийн бүтэн улирлын контентыг бие даан хариуцан хийж, мөн волейболын SG HAWKS багтай хамтран ажилласан."
   ],
-  latest: { title: "«ШИЙДНИЙ АХ» HIGH SCHOOL Ep1", where: "Facebook", url: "https://www.facebook.com/profile.php?id=100090520350078" }
+  teams: ["Хасын Хүлэгүүд", "SG APES", "Бишрэлт Метал", "Завхан Бродерс"],
+  timeline: [
+    { year: "2014", text: "Гэрэл зурагт дурласан" },
+    { year: "2020", text: "Спортын агшинг мэргэжлийн түвшинд" },
+    { year: "2024", text: "SG APES бүтэн улирал · SG HAWKS волейбол" },
+    { year: "2025", text: "«Шийдний ах» эхэлсэн" }
+  ]
 };
 
 window.SOCIALS = [

@@ -112,6 +112,63 @@ a { color: inherit; }
 .ticker-track b { font-family: var(--display); font-size: 1.1em; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
+/* ---------- GOAL ---------- */
+.goal { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: end; min-height: 640px; padding: 0; overflow: hidden; background: #08090c; color: #fff; }
+.goal-photo { position: absolute; right: 0; top: 0; width: 62%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: saturate(.85) contrast(1.05); }
+/* Зургийг зүүн тийш харанхуйлж текстийг уншигдахуйц болгоно */
+.goal::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #08090c 38%, rgba(8, 9, 12, .55) 62%, rgba(8, 9, 12, .15)), linear-gradient(0deg, rgba(8, 9, 12, .7), transparent 45%); pointer-events: none; }
+.goal-inner { position: relative; z-index: 1; grid-column: 1 / span 2; max-width: 760px; padding: clamp(60px, 9vw, 110px) clamp(16px, 5vw, 64px); }
+.goal-word { margin: 0 0 18px; display: flex; align-items: flex-end; font: clamp(5.5rem, 17vw, 13rem)/.8 "Archivo Black", var(--display); letter-spacing: -.04em; font-style: italic; transform: skewX(-8deg); }
+.g-go { color: #fff; }
+.g-al { color: #ff5a3c; margin-left: -.08em; transform: translateY(.18em); display: inline-block; }
+.goal.in .g-go { animation: slam .7s var(--ease) both; }
+.goal.in .g-al { animation: drop-in .7s .15s var(--ease) both; }
+@keyframes drop-in { from { opacity: 0; transform: translateY(-.4em); } }
+.goal-text { margin: 56px 0 22px; max-width: 46ch; font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.55; font-weight: 500; }
+.pillars { list-style: none; margin: 0 0 28px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.pillars li { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 10px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .18); font-weight: 500; font-size: .92rem; transform: skewX(-8deg); opacity: 0; transition: opacity .5s calc(.4s + var(--i) * .12s); }
+.pillars b { color: #ff5a3c; font-family: var(--mono); font-weight: 400; }
+.goal.in .pillars li { opacity: 1; }
+
+/* ---------- WHO IS KHASAA ---------- */
+.khasaa { background: #0d0e12; color: #fff; overflow: hidden; }
+.kh-head { position: relative; }
+.kh-title { margin: 0; display: grid; font: clamp(4rem, 13vw, 10rem)/.82 "Archivo Black", var(--display); letter-spacing: -.04em; font-style: italic; transform: skewX(-8deg); }
+.kh-who { color: #fff; }
+.kh-name { color: #ff5a3c; padding-left: .4em; }
+.khasaa.in .kh-who { animation: slam .7s var(--ease) both; }
+.khasaa.in .kh-name { animation: slam .7s .12s var(--ease) both; }
+.kh-pill { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 22px 0 0; padding: 8px 18px; border-radius: 16px; background: #ff5a3c; font-weight: 500; }
+.kh-pill b { font-style: italic; font-weight: 900; letter-spacing: .02em; }
+.kh-body { display: grid; grid-template-columns: minmax(260px, 380px) 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; margin-top: clamp(36px, 6vw, 60px); }
+
+/* Камерын харагч — Хасаа бол гэрэл зурагчин */
+.viewfinder { position: relative; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: radial-gradient(circle at 50% 40%, #1f2633, #090a0d 75%); border: 1px solid rgba(255, 255, 255, .1); font-family: var(--mono); }
+.vf-corner { position: absolute; width: 34px; height: 34px; border: 3px solid rgba(255, 255, 255, .85); }
+.vf-corner.tl { left: 16px; top: 16px; border-right: 0; border-bottom: 0; }
+.vf-corner.tr { right: 16px; top: 16px; border-left: 0; border-bottom: 0; }
+.vf-corner.bl { left: 16px; bottom: 16px; border-right: 0; border-top: 0; }
+.vf-corner.br { right: 16px; bottom: 16px; border-left: 0; border-top: 0; }
+.vf-rec { position: absolute; left: 30px; top: 28px; color: #ff3b30; font-size: .9rem; animation: blink 1.2s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.vf-meta { position: absolute; right: 30px; top: 30px; font-size: .72rem; color: rgba(255, 255, 255, .6); }
+.vf-focus { position: absolute; left: 50%; top: 40%; width: 90px; height: 90px; transform: translate(-50%, -50%); border: 2px solid var(--led); border-radius: 4px; animation: focus 2.6s var(--ease) infinite; }
+@keyframes focus { 0%, 100% { transform: translate(-50%, -50%) scale(1.25); opacity: .5; } 30%, 70% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+.vf-years { position: absolute; left: 0; right: 0; top: 58%; display: grid; justify-items: center; }
+.vf-years b { font: 700 clamp(4rem, 9vw, 6rem)/1 var(--display); color: var(--led); text-shadow: 0 0 18px rgba(255, 178, 26, .5); }
+.vf-years small { font-size: .8rem; color: rgba(255, 255, 255, .7); letter-spacing: .1em; text-transform: uppercase; }
+.vf-pro { position: absolute; left: 30px; right: 30px; bottom: 32px; text-align: center; font-size: .75rem; color: rgba(255, 255, 255, .6); }
+.vf-pro b { color: #fff; }
+.kh-text p { margin: 0 0 16px; font-size: 1.05rem; line-height: 1.7; color: rgba(255, 255, 255, .85); max-width: 62ch; }
+.kh-text mark { background: none; color: #ff5a3c; font-weight: 700; font-style: italic; }
+.kh-timeline { list-style: none; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px; }
+.kh-timeline li { display: grid; gap: 4px; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .14); background: rgba(255, 255, 255, .04); opacity: 0; transform: translateY(14px); transition: opacity .5s, transform .5s var(--ease); transition-delay: calc(var(--i) * .1s); }
+.khasaa.in .kh-timeline li { opacity: 1; transform: none; }
+.kh-timeline b { font: 700 1.5rem var(--display); color: var(--led); }
+.kh-timeline span { font-size: .85rem; line-height: 1.4; color: rgba(255, 255, 255, .8); }
+.kh-timeline li.now { background: #ff5a3c; border-color: #ff5a3c; }
+.kh-timeline li.now b, .kh-timeline li.now span { color: #fff; }
+
 /* ---------- Скорборд ---------- */
 .scoreboard-wrap { padding: clamp(50px, 8vw, 90px) clamp(16px, 5vw, 64px); background: var(--chalk); }
 .scoreboard { max-width: 1040px; margin: 0 auto; padding: 18px; border-radius: 22px; background: #0b0c10; border: 6px solid #2a2c33; box-shadow: 0 0 0 3px #0b0c10, 12px 12px 0 var(--orange); transform: rotate(-1deg); }
@@ -268,11 +325,11 @@ section { padding: clamp(64px, 10vw, 120px) clamp(16px, 5vw, 64px); }
 /* ---------- Хамтрагчид ---------- */
 .partners { background: var(--ink); color: #fff; text-align: center; }
 .partners .h2 { justify-content: center; }
-.partner-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-.partner { display: grid; gap: 4px; padding: 18px 26px; border-radius: 14px; border: 2px solid rgba(255, 255, 255, .2); text-decoration: none; transform: skewX(-8deg); transition: background .2s, border-color .2s; }
-.partner:hover { background: var(--orange); border-color: var(--orange); }
-.partner b { font: 700 1.4rem var(--display); }
-.partner small { opacity: .65; font-size: .8rem; }
+
+
+
+
+
 .collab { margin-top: 44px; }
 .collab p { margin: 0 0 10px; color: rgba(255, 255, 255, .7); }
 .phone { display: inline-block; font: 700 clamp(2rem, 7vw, 4.5rem) var(--display); font-style: italic; color: var(--orange); text-decoration: none; transition: transform .3s cubic-bezier(.3, 1.6, .5, 1); }
@@ -298,6 +355,12 @@ section { padding: clamp(64px, 10vw, 120px) clamp(16px, 5vw, 64px); }
   .hero { grid-template-columns: 1fr; padding-top: 96px; }
   .court-game { height: 420px; }
   .map-layout { grid-template-columns: 1fr; }
+  .goal { grid-template-columns: 1fr; min-height: 0; }
+  .goal-photo { position: relative; width: 100%; height: 340px; }
+  .goal::after { background: linear-gradient(0deg, #08090c 30%, rgba(8, 9, 12, .2) 60%, transparent); }
+  .goal-inner { grid-column: auto; margin-top: -120px; padding-top: 0; }
+  .kh-body { grid-template-columns: 1fr; }
+  .viewfinder { max-width: 360px; width: 100%; justify-self: center; aspect-ratio: 1; }
   .sb-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 760px) {

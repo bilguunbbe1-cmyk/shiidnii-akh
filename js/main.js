@@ -277,8 +277,25 @@
     </a>`).join('');
   $$('.social').forEach(c => seen.observe(c));
 
-  /* ---------- 10. ХАМТРАГЧИД ---------- */
-  $('#partners').innerHTML = BRAND.partners.map(p => `<a class="partner" href="${esc(p.url)}" target="_blank" rel="noopener"><b>${esc(p.name)}</b><small>${esc(p.role)}</small></a>`).join('');
+  /* ---------- GOAL — зорилго ---------- */
+  $('#goal-text').textContent = BRAND.goal;
+  $('#pillars').innerHTML = BRAND.pillars.map((p, i) => `<li style="--i:${i}"><b>0${i + 1}</b>${esc(p)}</li>`).join('');
+  seen.observe($('#goal'));
+
+  /* ---------- WHO IS KHASAA — санаачлагч ---------- */
+  const year = new Date().getFullYear();
+  $('#kh-name').textContent = `“${KHASAA.nick}”`;
+  $('#kh-pill').innerHTML = `🏀 ${esc(KHASAA.role)} <b>${esc(KHASAA.name)}</b>`;
+  $('#kh-years').textContent = year - KHASAA.since;
+  $('#kh-pro').textContent = year - KHASAA.proSince;
+  // Багуудын нэрийг улбар шараар тодруулна (слайд дээрхтэй адил)
+  const teamList = KHASAA.teams.map(t => `<mark>${esc(t)}</mark>`).join(', ');
+  $('#kh-bio').innerHTML = KHASAA.bio.map(p => `<p>${esc(p).replace('{teams}', teamList)}</p>`).join('');
+  $('#kh-timeline').innerHTML = KHASAA.timeline.map((t, i) => `<li style="--i:${i}"><b>${esc(t.year)}</b><span>${esc(t.text)}</span></li>`).join('') +
+    `<li class="now" style="--i:${KHASAA.timeline.length}"><b>Одоо</b><span>${fmt(totalFollowers)}+ дагагч · ${fmt(totalViews)}+ үзэлт</span></li>`;
+  seen.observe($('#khasaa'));
+
+  /* ---------- 10. ХАМТРАН АЖИЛЛАХ ---------- */
   const phone = $('#phone');
   phone.textContent = '📲 ' + BRAND.phone;
   phone.href = 'tel:+976' + BRAND.phone.replace(/\D/g, '');

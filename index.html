@@ -12,7 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=Rubik:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,10 +20,11 @@
   <header class="nav">
     <a class="nav-logo" href="#top"><span class="mini-ball" aria-hidden="true"></span>ШИЙДНИЙ АХ</a>
     <nav class="nav-links">
+      <a href="#goal">Зорилго</a>
       <a href="#series">Цуврал</a>
       <a href="#map">Газрын зураг</a>
       <a href="#episodes">Дугаарууд</a>
-      <a href="#clips">Клип</a>
+      <a href="#khasaa">Хасаа</a>
       <a href="#social">Сошиал</a>
     </nav>
     <a class="btn btn-orange nav-sub" href="#" data-link="subscribe" target="_blank" rel="noopener">Subscribe</a>
@@ -65,6 +66,17 @@
       <div class="ticker-track" id="ticker"></div>
     </div>
 
+    <!-- GOAL — цувралын зорилго -->
+    <section class="goal" id="goal">
+      <img class="goal-photo" src="assets/team.jpg" alt="«Шийдний ах»-ын тоглогчид шийдэн дээр" loading="lazy">
+      <div class="goal-inner">
+        <h2 class="goal-word" aria-label="Goal"><span class="g-go">GO</span><span class="g-al">AL</span></h2>
+        <p class="goal-text" id="goal-text"></p>
+        <ol class="pillars" id="pillars"></ol>
+        <a class="btn btn-orange" href="#" data-link="youtube" target="_blank" rel="noopener">▶ Watch now</a>
+      </div>
+    </section>
+
     <!-- 2. СКОРБОРД -->
     <section class="scoreboard-wrap">
       <div class="scoreboard" id="scoreboard">
@@ -104,6 +116,28 @@
       <div class="clip-strip" id="clip-strip"></div>
     </section>
 
+    <!-- WHO IS KHASAA — санаачлагч -->
+    <section class="khasaa" id="khasaa">
+      <div class="kh-head">
+        <h2 class="kh-title"><span class="kh-who">WHO IS</span><span class="kh-name" id="kh-name"></span></h2>
+        <p class="kh-pill" id="kh-pill"></p>
+      </div>
+      <div class="kh-body">
+        <div class="viewfinder" aria-hidden="true">
+          <span class="vf-corner tl"></span><span class="vf-corner tr"></span><span class="vf-corner bl"></span><span class="vf-corner br"></span>
+          <span class="vf-rec">● REC</span>
+          <span class="vf-meta">ISO 3200 · 1/1000s · f2.8</span>
+          <span class="vf-focus"></span>
+          <span class="vf-years"><b id="kh-years"></b><small>жил камертай</small></span>
+          <span class="vf-pro"><b id="kh-pro"></b> жил спортын мэргэжлийн гэрэл зураг</span>
+        </div>
+        <div class="kh-text">
+          <div id="kh-bio"></div>
+          <ol class="kh-timeline" id="kh-timeline"></ol>
+        </div>
+      </div>
+    </section>
+
     <!-- 7. СОШИАЛ -->
     <section class="social-sec" id="social">
       <h2 class="h2"><span>05</span>Сошиал</h2>
@@ -111,10 +145,9 @@
       <div class="social-grid" id="social-grid"></div>
     </section>
 
-    <!-- 8. ХАМТРАГЧИД -->
+    <!-- 8. ХАМТРАН АЖИЛЛАХ -->
     <section class="partners">
-      <h2 class="h2 light"><span>06</span>Хамт тоглодог</h2>
-      <div class="partner-row" id="partners"></div>
+      <h2 class="h2 light"><span>06</span>Хамтран ажиллах</h2>
       <div class="collab">
         <p>Ивээн тэтгэх, хамтран ажиллах уу?</p>
         <a class="phone" id="phone" href="#"></a>
