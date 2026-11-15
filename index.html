@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ШИЙДНИЙ АХ — Airbum · Ball is life</title>
+  <meta name="description" content="«Шийдний ах» — Улаанбаатарын хорооллын шийд бүрээр явдаг streetball цуврал. Airbum · Ball is life.">
+  <meta name="theme-color" content="#0c1426">
+  <meta property="og:title" content="ШИЙДНИЙ АХ — Airbum">
+  <meta property="og:description" content="Улаанбаатарын хорооллын шийд бүрээр явдаг streetball цуврал.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23ff6a13' stroke='%23111' stroke-width='3'/%3E%3Cpath d='M4 32h56M32 4v56M12 12c10 8 10 32 0 40M52 12c-10 8-10 32 0 40' fill='none' stroke='%23111' stroke-width='3'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a class="nav-logo" href="#top"><span class="mini-ball" aria-hidden="true"></span>ШИЙДНИЙ АХ</a>
+    <nav class="nav-links">
+      <a href="#series">Цуврал</a>
+      <a href="#map">Газрын зураг</a>
+      <a href="#episodes">Дугаарууд</a>
+      <a href="#clips">Клип</a>
+      <a href="#social">Сошиал</a>
+    </nav>
+    <a class="btn btn-orange nav-sub" href="#" data-link="subscribe" target="_blank" rel="noopener">Subscribe</a>
+  </header>
+
+  <main>
+    <!-- 1. HERO + шидэлтийн тоглоом -->
+    <section class="hero" id="top">
+      <div class="hero-text">
+        <p class="kicker">Airbum · Ball is life · Улаанбаатар</p>
+        <h1 class="title"><span>ШИЙДНИЙ</span><span>АХ</span></h1>
+        <p class="lead">Хотын хорооллын шийд бүрээр явж, тэндхийн «ах»-тай нь нүүр тулна. 1vs1. Cold moments. Үнэн streetball.</p>
+        <div class="cta">
+          <a class="btn btn-orange" href="#episodes">▶ Дугаар үзэх</a>
+          <a class="btn btn-line" href="#map">Шийдээ олох</a>
+        </div>
+      </div>
+
+      <div class="court-game" id="game" aria-label="Шидэлтийн тоглоом">
+        <div class="hoop">
+          <div class="board"><div class="board-box"></div></div>
+          <div class="rim"></div>
+          <svg class="net" viewBox="0 0 100 70" aria-hidden="true"><path d="M8 2 L22 66 M30 2 L36 66 M50 2 L50 66 M70 2 L64 66 M92 2 L78 66 M12 20 L88 20 M16 38 L84 38 M20 54 L80 54"/></svg>
+        </div>
+        <div class="ball" id="ball" aria-hidden="true"></div>
+        <div class="shot-msg" id="shot-msg" aria-live="polite"></div>
+        <div class="game-hud">
+          <span>ОНОО <b id="g-score">0</b></span>
+          <span>ДАРААЛСАН <b id="g-streak">0</b></span>
+          <span>ОНОВЧ <b id="g-pct">—</b></span>
+        </div>
+        <button class="btn btn-orange shoot-btn" id="shoot" type="button">🏀 Шид!</button>
+        <p class="game-hint">эсвэл Space товч</p>
+      </div>
+    </section>
+
+    <!-- Мэдээний гүйдэг мөр -->
+    <div class="ticker" aria-label="Мэдээ">
+      <div class="ticker-track" id="ticker"></div>
+    </div>
+
+    <!-- 2. СКОРБОРД -->
+    <section class="scoreboard-wrap">
+      <div class="scoreboard" id="scoreboard">
+        <div class="sb-head"><span>AIRBUM</span><span class="sb-clock" id="shot-clock">24</span><span>2026</span></div>
+        <div class="sb-grid" id="sb-grid"></div>
+      </div>
+    </section>
+
+    <!-- 3. ЦУВРАЛУУД -->
+    <section class="series" id="series">
+      <h2 class="h2"><span>01</span>Цуврал</h2>
+      <div class="series-grid" id="series-grid"></div>
+    </section>
+
+    <!-- 4. ГАЗРЫН ЗУРАГ -->
+    <section class="map-sec" id="map">
+      <h2 class="h2 light"><span>02</span>Шийдний газрын зураг</h2>
+      <p class="map-lead">Цуврал бүр хотын өөр шийд дээр болдог. Цэг дээр дарж тэр шийдийн дугаарыг үз. <small>(Байршил ойролцоо, схем)</small></p>
+      <div class="map-layout">
+        <p class="swipe-hint">← Зургийг хажуу тийш гүйлгэ →</p>
+        <div class="map-box"><svg class="city" id="city" viewBox="0 0 1000 620" role="img" aria-label="Улаанбаатарын шийдүүдийн схем"></svg></div>
+        <aside class="spot-panel" id="spot-panel" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <!-- 5. ДУГААРУУД -->
+    <section class="episodes" id="episodes">
+      <h2 class="h2"><span>03</span>Дугаарууд</h2>
+      <div class="filters" id="filters"></div>
+      <div class="ep-grid" id="ep-grid"></div>
+    </section>
+
+    <!-- 6. TIKTOK КЛИПҮҮД -->
+    <section class="clips" id="clips">
+      <h2 class="h2 light"><span>04</span>Highlight клипүүд</h2>
+      <p class="clips-lead" id="clips-lead"></p>
+      <div class="clip-strip" id="clip-strip"></div>
+    </section>
+
+    <!-- 7. СОШИАЛ -->
+    <section class="social-sec" id="social">
+      <h2 class="h2"><span>05</span>Сошиал</h2>
+      <div class="audience" id="audience"></div>
+      <div class="social-grid" id="social-grid"></div>
+    </section>
+
+    <!-- 8. ХАМТРАГЧИД -->
+    <section class="partners">
+      <h2 class="h2 light"><span>06</span>Хамт тоглодог</h2>
+      <div class="partner-row" id="partners"></div>
+      <div class="collab">
+        <p>Ивээн тэтгэх, хамтран ажиллах уу?</p>
+        <a class="phone" id="phone" href="#"></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© 2026 Airbum · Ball is life</span>
+    <span class="foot-links" id="foot-links"></span>
+  </footer>
+
+  <div class="player" id="player" hidden>
+    <div class="player-box">
+      <button class="player-close" id="player-close" type="button" aria-label="Хаах">×</button>
+      <div class="player-frame" id="player-frame"></div>
+      <p class="player-title" id="player-title"></p>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
